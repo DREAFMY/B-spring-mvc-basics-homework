@@ -19,7 +19,7 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody @Validated User user) {
+    public ResponseEntity register(@RequestBody @Validated User user) throws Exception {
         userService.register(user);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
