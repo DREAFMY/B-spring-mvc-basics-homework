@@ -17,8 +17,7 @@ public class User {
     @Pattern(regexp = "/^[\\w]{3,10}$/", message = "must be length 6-12 number english underline")
     private String userName;
     @NotBlank(message = "password must not be blank")
-    @Max(value = 12,message = "length max 12")
-    @Min(value = 5,message = "length min 5")
+    @Size(min = 5, max = 12, message = "password length min 5 max 12")
     private String password;
     @Email(message = "email not valid")
     private String email;
