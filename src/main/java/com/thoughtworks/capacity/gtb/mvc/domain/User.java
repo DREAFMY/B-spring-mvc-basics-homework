@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
 public class User {
     private int id;
     @NotBlank(message = "user name must not be blank")
-    @Pattern(regexp = "/^[\\w]{3,10}$/", message = "must be length 6-12 number english underline")
+    @Pattern(regexp = "/^\\w{3,10}$/", message = "user name must be length 3-10 number english underline")
     private String username;
     @NotBlank(message = "password must not be blank")
     @Size(min = 5, max = 12, message = "password length min 5 max 12")
