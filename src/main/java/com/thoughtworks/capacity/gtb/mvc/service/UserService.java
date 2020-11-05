@@ -14,14 +14,15 @@ public class UserService {
     List<User> users = new ArrayList<>();
 
     public void register(User user) {
-        if (users.stream().anyMatch(e -> e.getUserName().equals(user.getUserName()))) {
+        if (users.stream().anyMatch(e -> e.getUsername().equals(user.getUsername()))) {
             throw new UserExistException();
         }
+        user.setId(users.size()+1);
         users.add(user);
     }
 
     public User login(String userName, String password) {
-        List<User> user1 = users.stream().filter(u -> u.getUserName().equals(userName) && u.getPassword().equals(password))
+        List<User> user1 = users.stream().filter(u -> u.getUsername().equals(userName) && u.getPassword().equals(password))
                 .collect(Collectors.toList());
         if (user1.size() != 1) {
             throw new LoginException();

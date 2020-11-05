@@ -25,9 +25,9 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public ResponseEntity<User> login(@RequestParam @Pattern(regexp = "/^[\\w]{3,10}$/", message = "must be length 6-12 number english underline") String userName,
+    public ResponseEntity<User> login(@RequestParam @Pattern(regexp = "/^[\\w]{3,10}$/", message = "must be length 6-12 number english underline") String username,
                                       @RequestParam @Size(min = 5, max = 12, message = "password length min 5 max 12") String password) throws Exception {
-        User user = userService.login(userName, password);
+        User user = userService.login(username, password);
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 }
