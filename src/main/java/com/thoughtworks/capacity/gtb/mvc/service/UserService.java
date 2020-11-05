@@ -1,6 +1,8 @@
 package com.thoughtworks.capacity.gtb.mvc.service;
 
 import com.thoughtworks.capacity.gtb.mvc.domain.User;
+import com.thoughtworks.capacity.gtb.mvc.exception.LoginException;
+import com.thoughtworks.capacity.gtb.mvc.exception.UserExistException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,7 +15,7 @@ public class UserService {
 
     public void register(User user) {
         if (users.stream().anyMatch(e -> e.getUserName().equals(user.getUserName()))) {
-            //todo throw exception
+            throw new UserExistException();
         }
         users.add(user);
     }
@@ -22,7 +24,7 @@ public class UserService {
         List<User> user1 = users.stream().filter(u -> u.getUserName().equals(userName) && u.getPassword().equals(password))
                 .collect(Collectors.toList());
         if (user1.size() != 1) {
-            //todo throw exception
+            throw new LoginException();
         }
         return user1.get(0);
     }
